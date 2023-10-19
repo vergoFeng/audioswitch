@@ -64,7 +64,8 @@ internal class AudioDeviceScanner(
             AudioDevice.BluetoothHeadset(this.productName.toString())
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && (this.type == AudioDeviceInfo.TYPE_BLE_HEADSET || this.type == AudioDeviceInfo.TYPE_BLE_SPEAKER)) {
             AudioDevice.BluetoothHeadset(this.productName.toString())
-        } else if (this.type == AudioDeviceInfo.TYPE_WIRED_HEADSET || this.type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES || this.type == AudioDeviceInfo.TYPE_USB_HEADSET) {
+        } else if (this.type == AudioDeviceInfo.TYPE_WIRED_HEADSET || this.type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES ||
+            this.type == AudioDeviceInfo.TYPE_USB_HEADSET || this.type == AudioDeviceInfo.TYPE_USB_DEVICE) {
             AudioDevice.WiredHeadset()
         } else if (this.type == AudioDeviceInfo.TYPE_BUILTIN_EARPIECE) {
             AudioDevice.Earpiece()
@@ -90,7 +91,7 @@ internal class AudioDeviceScanner(
                 if (this.type == AudioDeviceInfo.TYPE_WIRED_HEADSET || this.type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES) {
                     true
                 } else {
-                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && this.type == AudioDeviceInfo.TYPE_USB_HEADSET
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && (this.type == AudioDeviceInfo.TYPE_USB_HEADSET || this.type == AudioDeviceInfo.TYPE_USB_DEVICE)
                 }
         }
 }
